@@ -29,6 +29,6 @@ Follow these steps to run the project locally:
 
 ```bash
 git clone https://github.com/b-arslan/TripPlanner.git
-cd TripPlanner
+cd trip-planner
 npm install
 npm run dev

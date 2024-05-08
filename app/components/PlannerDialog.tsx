@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { DatePicker, Space, AutoComplete, Modal, Col, Row, Form, Button } from 'antd';
 import type { DatePickerProps } from 'antd';
+import { getForecast } from "../api/getForecast";
 
 interface PlannerDialogProps {
     isModalVisible: boolean;
@@ -15,15 +16,23 @@ const onChange: DatePickerProps['onChange'] = (date, dateString) => {
 
 const PlannerDialog: React.FC<PlannerDialogProps> = ({ isModalVisible, handleOk, handleSearch, options }) => {
 
+    const [forecast, setForecast] = useState(null);
     const [form] = Form.useForm();
 
     const onFormSubmit = async () => {
         try {
             const values = await form.validateFields();
-            handleOk(); 
-            console.log('Form Data:', values);
+            const { startDate, endDate, country } = values;
+
+            const cityName = country.split(',')[0].trim();
+
+            const data = await getForecast(cityName, startDate.format('YYYY-MM-DD'), endDate.format('YYYY-MM-DD'));
+            setForecast(data);
+            handleOk();
+            form.resetFields();
+            console.log('Weather Data:', forecast);
         } catch (error) {
-            console.log('Validation Failed:', error);
+            console.error('Validation Failed:', error);
         }
     };
 

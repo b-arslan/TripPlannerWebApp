@@ -19,6 +19,7 @@ const App = () => {
 
     const handleOk = () => {
         setIsModalVisible(false);
+        setOptions([]);
     };
 
     const handleSearch = (searchText: string) => {
