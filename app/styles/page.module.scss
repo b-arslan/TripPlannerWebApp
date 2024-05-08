@@ -1,0 +1,35 @@
+@keyframes moveLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-120px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+
+    }
+}
+
+.layout {
+    height: 100vh;
+    background: #fff;
+    animation-name: moveLeft;
+    animation-duration: 1.8s;
+}
+
+.header {
+    text-align: center;
+    background: #fff;
+    height: 7vh;
+}
+
+.footer {
+    text-align: center;
+    background: #fff;
+    height: 7vh;
+}
+
+.content {
+    height: 86vh;
+    text-align: center;
+}
